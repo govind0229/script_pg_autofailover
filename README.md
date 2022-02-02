@@ -22,7 +22,7 @@ delete     -- Delete pg_autoctl Cluster instances.
 watch      -- Show cluster nodes state.
 
 on the monitor machine;
-# sh pg-auto-failover.sh monitor - [ It will automatically install the latest version of pg_autofailover rpm and set up monitor instance.]
+- #sh pg-auto-failover.sh monitor - [ It will automatically install the latest version of pg_autofailover rpm and set up monitor instance.]
 
 after completing the monitor instance copy the "script_pg_autofailover"  folder on nodes machines and run the below command for setup 
-# sh pg-auto-failover.sh node - [  It will automatically install the latest version of pg_autofailover rpm and set up node instance.]
+- #sh pg-auto-failover.sh node - [  It will automatically install the latest version of pg_autofailover rpm and set up node instance.]
