@@ -147,7 +147,7 @@ fi
 if [[ -z "$1" ]]; then
     echo -e "\nUsage: $0 [monitor|node|delete|watch]\n"
     echo -e "monitor    -- Create a cluster monitor using $0 monitor."
-    echo -e "node       -- Create a cluster nodes useing $0 node."
+    echo -e "node       -- Create a cluster nodes using $0 node."
     echo -e "delete     -- Delete pg_autoctl Cluster instances."
     echo -e "watch      -- Show cluster nodes state.\n"
 fi
