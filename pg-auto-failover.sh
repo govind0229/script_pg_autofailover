@@ -24,7 +24,6 @@ Y='\033[0;33m'
 #Globle variable;
 HOST_IP=$(ip route get 1 | sed 's/^.*src \([^ ]*\).*$/\1/;q')
 PGPath='/var/lib/pgsql/'
-PGCTL_Path=$(find /usr/ -type f -name 'pg_autoctl' -print | sed 's/pg_autoctl//g')
 
 if [ -f ".env" ]; then
     source ./.env 
@@ -40,7 +39,8 @@ function Install(){
         echo -e "${Y}Citusdata.com repo and rpm installation in process...${C}" 
         curl https://install.citusdata.com/community/rpm.sh | sudo bash  &>/dev/null
         #curl -s https://packagecloud.io/install/repositories/citusdata/community/script.rpm.sh | sudo bash &>/dev/null
-        sudo dnf -y install ${PG} &>/dev/null
+        sudo dnf -y install pg-auto-failover16_14.x86_64 &>/dev/null
+        declare PGCTL_Path=$(find /usr/ -type f -name 'pg_autoctl' -print | sed 's/pg_autoctl//g')
     else
        echo -e "Package ${G}${PG}${C} is already installed."
        return 1
