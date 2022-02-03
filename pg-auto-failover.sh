@@ -38,8 +38,8 @@ function Install(){
 
     if [[ -z "${PG}" ]]; then
         echo -e "${Y}Citusdata.com repo and rpm installation in process...${C}" 
-        #curl https://install.citusdata.com/community/rpm.sh | sudo bash  &>/dev/null
-        curl -s https://packagecloud.io/install/repositories/citusdata/community/script.rpm.sh | sudo bash &>/dev/null
+        curl https://install.citusdata.com/community/rpm.sh | sudo bash  &>/dev/null
+        #curl -s https://packagecloud.io/install/repositories/citusdata/community/script.rpm.sh | sudo bash &>/dev/null
         sudo dnf -y install ${PG} &>/dev/null
     else
        echo -e "Package ${G}${PG}${C} is already installed."
