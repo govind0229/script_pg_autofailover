@@ -40,7 +40,6 @@ function Install(){
         curl https://install.citusdata.com/community/rpm.sh | sudo bash  &>/dev/null
         #curl -s https://packagecloud.io/install/repositories/citusdata/community/script.rpm.sh | sudo bash &>/dev/null
         sudo dnf -y install pg-auto-failover16_14.x86_64 &>/dev/null
-        declare PGCTL_Path=$(find /usr/ -type f -name 'pg_autoctl' -print | sed 's/pg_autoctl//g')
     else
        echo -e "Package ${G}${PG}${C} is already installed."
        return 1
@@ -50,6 +49,7 @@ function Install(){
 if [[ "$1" == "monitor" ]]; then
     
     Install
+    PGCTL_Path=$(find /usr/ -type f -name 'pg_autoctl' -print | sed 's/pg_autoctl//g')
     URI=$(sudo -u postgres ${PGCTL_Path}pg_autoctl show uri --pgdata ${PGPath}${monitor_pgdata} | grep monitor | awk '{print $5}')
     
     if [[ -z "${URI}" ]]; then
@@ -92,6 +92,7 @@ fi
 if [[ "$1" == "node" ]]; then
 
     Install
+    PGCTL_Path=$(find /usr/ -type f -name 'pg_autoctl' -print | sed 's/pg_autoctl//g')
     URI=$(sudo -u postgres "${PGCTL_Path}"pg_autoctl show uri --pgdata ${PGPath}"${nodes_pgdata}" | grep monitor | awk '{print $5}')
     
     if [[ -z "${URI}" ]]; then
@@ -138,6 +139,7 @@ if [ "$1" == "delete" ]; then
 fi
 
 if [ "$1"   ==  "watch" ]; then
+    PGCTL_Path=$(find /usr/ -type f -name 'pg_autoctl' -print | sed 's/pg_autoctl//g')
     if [ -d "${PGPath}${monitor_pgdata}" ]; then
         sudo -u postgres ${PGCTL_Path}pg_autoctl show state --watch --pgdata ${PGPath}${monitor_pgdata}
     else
