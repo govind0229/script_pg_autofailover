@@ -24,6 +24,7 @@ Y='\033[0;33m'
 #Globle variable;
 HOST_IP=$(ip route get 1 | sed 's/^.*src \([^ ]*\).*$/\1/;q')
 PGPath='/var/lib/pgsql/'
+PGCTL_Path='/usr/pgsql-14/bin/'
 
 if [ -f ".env" ]; then
     source ./.env 
@@ -49,7 +50,6 @@ function Install(){
 if [[ "$1" == "monitor" ]]; then
     
     Install
-    PGCTL_Path=$(find /usr/ -type f -name 'pg_autoctl' -print | sed 's/pg_autoctl//g')
     URI=$(sudo -u postgres ${PGCTL_Path}pg_autoctl show uri --pgdata ${PGPath}${monitor_pgdata} | grep monitor | awk '{print $5}')
     
     if [[ -z "${URI}" ]]; then
@@ -92,7 +92,6 @@ fi
 if [[ "$1" == "node" ]]; then
 
     Install
-    PGCTL_Path=$(find /usr/ -type f -name 'pg_autoctl' -print | sed 's/pg_autoctl//g')
     URI=$(sudo -u postgres "${PGCTL_Path}"pg_autoctl show uri --pgdata ${PGPath}"${nodes_pgdata}" | grep monitor | awk '{print $5}')
     
     if [[ -z "${URI}" ]]; then
@@ -139,7 +138,6 @@ if [ "$1" == "delete" ]; then
 fi
 
 if [ "$1"   ==  "watch" ]; then
-    PGCTL_Path=$(find /usr/ -type f -name 'pg_autoctl' -print | sed 's/pg_autoctl//g')
     if [ -d "${PGPath}${monitor_pgdata}" ]; then
         sudo -u postgres ${PGCTL_Path}pg_autoctl show state --watch --pgdata ${PGPath}${monitor_pgdata}
     else
