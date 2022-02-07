@@ -131,10 +131,22 @@ fi
 
 
 if [ "$1" == "delete" ]; then 
-    systemctl stop pgautofailover-* &>/dev/null
-    rm -rvf ${PGPath}/* ${PGPath}.config ${PGPath}.local &>/dev/null
-    rm -f /usr/lib/systemd/system/pgautofailover-* &>/dev/null
-    echo -e "\n${R}Node deleted successfully!${C}\n"
+
+    read -P "Are you sure, want to dete the nodes: [y/n]" item
+    case "${item}" in
+        y|Y)
+        systemctl stop pgautofailover-* &>/dev/null
+            rm -rvf ${PGPath}/* ${PGPath}.config ${PGPath}.local &>/dev/null
+            rm -f /usr/lib/systemd/system/pgautofailover-* &>/dev/null
+            echo -e "\n${R}Node deleted successfully!${C}\n"
+        ;;
+        N|n)
+        echo 'God Decision!'
+        ;;
+        *)
+            echo 'Opps!'
+        ;;
+    esac
 fi
 
 if [ "$1"   ==  "watch" ]; then
