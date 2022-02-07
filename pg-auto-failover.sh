@@ -141,10 +141,10 @@ if [ "$1" == "delete" ]; then
             echo -e "\n${R}Node deleted successfully!${C}\n"
         ;;
         N|n)
-        echo 'God Decision!'
+        echo -e "${G}God Decision!${C}"
         ;;
         *)
-            echo 'Opps!'
+            echo -e "${R}Opps!${C}"
         ;;
     esac
 fi
