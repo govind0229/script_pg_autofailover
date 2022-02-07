@@ -132,7 +132,7 @@ fi
 
 if [ "$1" == "delete" ]; then 
 
-    read -P "Are you sure, want to dete the nodes: [y/n]" item
+    read -p "Are you sure, want to dete the nodes: [y/n]" item
     case "${item}" in
         y|Y)
         systemctl stop pgautofailover-* &>/dev/null
