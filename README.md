@@ -13,26 +13,28 @@ Added Automatically check and install the latest pg_auto_failover rpm in the mac
 
 Added pgautofailover.server name with pgautofailover-monitor.service/pgautofailover-node.service. for run monitor and node instances on a single machine.
 
+<--Setup pgautofialvoer -->
 ## Steps;
-- edit .env file and update monitor variables with your current running machine.
 
-monitor_address - update with a current running machine IP address. like '192.168.0.1'
+- edit `.env` file and update monitor variables with your current running machine.
 
-monitor_port - if you are required to run monitor and node instance on the same machine, in this case, you need to set the port, default Postgres port is '5432' [it's only applicable for the testing environment]
+`monitor_address` - update with a current running machine IP address. like '192.168.0.1'
 
-monitor_uri - don't change it.
+`monitor_port` - if you are required to run monitor and node instance on the same machine, in this case, you need to set the port, default Postgres port is '5432' [it's only applicable for the testing environment]
+
+`monitor_uri` - don't change it.
 
 - after setup .env file run below command to setup monitor instance. 
 
-`pg-auto-failover.sh` comes with the below options; to create monitor and node instances;
+- `pg-auto-failover.sh` script comes with the below options; to create monitor and node instances;
 
-monitor    -- Create a cluster monitor using ./pg-auto-failover.sh monitor.
+   - monitor    -- Create a cluster monitor using `./pg-auto-failover.sh monitor`.
 
-node       -- Create a cluster nodes using ./pg-auto-failover.sh node.
+   - node       -- Create a cluster nodes using `./pg-auto-failover.sh node`.
 
-delete     -- Delete pg_autoctl Cluster instances.
+   - delete     -- Delete pg_autoctl Cluster instances.
 
-watch      -- Show cluster nodes state.
+   - watch      -- Show cluster nodes state.
 
 
 on the monitor machine; 
@@ -59,4 +61,5 @@ after completing the monitor instance copy the "script_pg_autofailover"  folder 
 ### Xinetd Installation script for Haproxy monitor nodes status
 
 Package -   xinetd 
+
 Port    -   23260/tcp
