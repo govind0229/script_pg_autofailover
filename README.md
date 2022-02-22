@@ -1,4 +1,4 @@
-# `script_pg_autofailover` for installation monitor and nodes instances with `Xinetd`
+# `Pg_autofailover` for installation monitor and nodes instances with `Xinetd`
 
 ## New changes details;
 
@@ -10,9 +10,12 @@
 
 - Remove Option list for installing `pg_auto_failover` rpm in the machine.
 
-- Added Automatically check and install the latest pg_auto_failover rpm in the machine.
+- Added Automatically check and install the latest `pg_auto_failover` rpm in the machine.
 
-- Added pgautofailover.server name with pgautofailover-monitor.service/pgautofailover-node.service. for run monitor and node instances on a single machine.
+- Added ``pgautofailover`` service file name manage with like below to  run monitor and node instances on a single machine.
+
+        monitor - pgautofailover-monitor.service
+        node    - pgautofailover-node.service
 
 ## Steps;
 
@@ -27,6 +30,7 @@
 - `monitor_uri` - don't change it.
 
 - after setup .env file run below command to setup monitor instance. 
+
 
 #### `pg-auto-failover.sh` script comes with the below options; to create monitor and node instances;
 
@@ -65,7 +69,6 @@
 
 - In computer networking, xinetd (Extended Internet Service Daemon) is an open-source super-server daemon that manages Internet-based connectivity on numerous Unix-like platforms.
 It is a more secure alternative to inetd ("the Internet daemon").
-
 
 - Details;
 
