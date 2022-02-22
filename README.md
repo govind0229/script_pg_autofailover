@@ -34,8 +34,29 @@ delete     -- Delete pg_autoctl Cluster instances.
 
 watch      -- Show cluster nodes state.
 
-on the monitor machine;
-- #sh pg-auto-failover.sh monitor - [ It will automatically install the latest version of pg_autofailover rpm and set up monitor instance.]
 
+on the monitor machine; 
+
+- [ It will automatically install the latest version of pg_autofailover rpm and set up monitor instance.]
+
+```sh
+    ./pg-auto-failover.sh monitor 
+```
+    
 after completing the monitor instance copy the "script_pg_autofailover"  folder on nodes machines and run the below command for setup 
-- #sh pg-auto-failover.sh node - [  It will automatically install the latest version of pg_autofailover rpm and set up node instance.]
+ - [  It will automatically install the latest version of pg_autofailover rpm and set up node instance.]
+
+```sh
+    ./pg-auto-failover.sh node
+```
+
+### For verifying the cluster to run watch on monitor node
+
+```sh
+    ./pg-auto-failover.sh watch
+```
+
+### Xinetd Installation script for Haproxy monitor nodes status
+
+Package -   xinetd 
+Port    -   23260/tcp

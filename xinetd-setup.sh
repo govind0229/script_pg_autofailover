@@ -4,7 +4,7 @@
 # install xinetd package
 
 echo "Xinetd Installation in progress..."    
-dnf -y install xinetd 
+dnf -y install xinetd &>/dev/null
 
 #Script to check postgreSQL health
 cat > /etc/xinetd.d/pg_node.sh << 'EOF'
@@ -80,4 +80,3 @@ if curl --output /dev/null --silent --head --fail  http://127.0.0.1:23260; then
 else 
    echo 'Xinetd is Failed!'
 fi
-   
