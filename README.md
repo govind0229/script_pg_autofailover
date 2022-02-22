@@ -1,43 +1,45 @@
-# script_pg_autofailover for installation monitor and nodes instances 
+# `script_pg_autofailover` for installation monitor and nodes instances with `Xinetd`
 
-## - New changes details;
-Added host_IP for setup monitor and nodes instances.
+## New changes details;
 
-Added Postgres port for monitor and node instances.
+- Added `host_IP` for setup monitor and nodes instances.
 
-Added firewall according to setup monitor and nodes port in .env file.
+- Added Postgres `port` for monitor and node instances.
 
-Remove Option list for installing pg_auto_failover rpm in the machine.
+- Added `firewall` according to setup monitor and nodes port in `.env` file.
 
-Added Automatically check and install the latest pg_auto_failover rpm in the machine.
+- Remove Option list for installing `pg_auto_failover` rpm in the machine.
 
-Added pgautofailover.server name with pgautofailover-monitor.service/pgautofailover-node.service. for run monitor and node instances on a single machine.
+- Added Automatically check and install the latest pg_auto_failover rpm in the machine.
 
-<--Setup pgautofialvoer -->
+- Added pgautofailover.server name with pgautofailover-monitor.service/pgautofailover-node.service. for run monitor and node instances on a single machine.
+
 ## Steps;
 
 - edit `.env` file and update monitor variables with your current running machine.
 
-`monitor_address` - update with a current running machine IP address. like '192.168.0.1'
+- `monitor_address` - update with a current running machine IP address. like '192.168.0.1'
 
-`monitor_port` - if you are required to run monitor and node instance on the same machine, in this case, you need to set the port, default Postgres port is '5432' [it's only applicable for the testing environment]
+- `monitor_port` - if you are required to run monitor and node instance on the same machine, in this case, you need to set monitor node port, like `5434` [ it's only applicable for the testing environment ]
 
-`monitor_uri` - don't change it.
+- Default PostgreSQL port is `5432` 
+
+- `monitor_uri` - don't change it.
 
 - after setup .env file run below command to setup monitor instance. 
 
-- `pg-auto-failover.sh` script comes with the below options; to create monitor and node instances;
+#### `pg-auto-failover.sh` script comes with the below options; to create monitor and node instances;
 
-   - monitor    -- Create a cluster monitor using `./pg-auto-failover.sh monitor`.
+    monitor    -- Create a cluster monitor using `./pg-auto-failover.sh monitor`.
 
-   - node       -- Create a cluster nodes using `./pg-auto-failover.sh node`.
+    node       -- Create a cluster nodes using `./pg-auto-failover.sh node`.
 
-   - delete     -- Delete pg_autoctl Cluster instances.
+    delete     -- Delete pg_autoctl Cluster instances.
 
-   - watch      -- Show cluster nodes state.
+    watch      -- Show cluster nodes state.
 
 
-on the monitor machine; 
+##### On the monitor machine; 
 
 - [ It will automatically install the latest version of pg_autofailover rpm and set up monitor instance.]
 
@@ -45,8 +47,9 @@ on the monitor machine;
     ./pg-auto-failover.sh monitor 
 ```
     
-after completing the monitor instance copy the "script_pg_autofailover"  folder on nodes machines and run the below command for setup 
- - [  It will automatically install the latest version of pg_autofailover rpm and set up node instance.]
+##### After completing the monitor instance copy the "script_pg_autofailover"  folder on nodes machines and run the below command for setup 
+ 
+ - [  It will automatically install the latest version of pg_autofailover package and set up node instance.]
 
 ```sh
     ./pg-auto-failover.sh node
@@ -60,6 +63,12 @@ after completing the monitor instance copy the "script_pg_autofailover"  folder 
 
 ### Xinetd Installation script for Haproxy monitor nodes status
 
-Package -   xinetd 
+- In computer networking, xinetd (Extended Internet Service Daemon) is an open-source super-server daemon that manages Internet-based connectivity on numerous Unix-like platforms.
+It is a more secure alternative to inetd ("the Internet daemon").
 
-Port    -   23260/tcp
+
+- Details;
+
+        Package -   xinetd 
+        Port    -   23260/tcp
+
