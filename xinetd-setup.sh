@@ -73,5 +73,6 @@ if [ $? -eq 0 ]; then
 fi
 
 #Start xinetd service
-sudo systemctl enable --now 'xinetd.service' # use '--user' for user services
+sudo sudo systemctl restart 'xinetd.service' # use '--user' for user services
+sudo systemctl enable 'xinetd.service' # use '--user' for user services
 
