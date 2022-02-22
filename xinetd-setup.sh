@@ -67,12 +67,17 @@ EOF
 #add firewall entry
 firewall-cmd --state &>/dev/null
 if [ $? -eq 0 ]; then
-
-    firewall-cmd --add-port=23260/tcp --permanent
-    firewall-cmd --reload
+    firewall-cmd --add-port=23260/tcp --permanent &>/dev/null
+    firewall-cmd --reload &>/dev/null
 fi
 
 #Start xinetd service
 sudo sudo systemctl restart 'xinetd.service' # use '--user' for user services
 sudo systemctl enable 'xinetd.service' # use '--user' for user services
 
+if curl --output /dev/null --silent --head --fail  http://127.0.0.1:23260; then
+   echo 'Xinetd is OK!'
+else 
+   echo 'Xinetd is Failed!'
+fi
+   
